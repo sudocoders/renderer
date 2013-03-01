@@ -4,7 +4,7 @@ task :default => :compile
 
 desc 'Use dmcs to compile'
 task :compile do
-  sh "dmcs -r:OpenTK.dll -r:System.dll -r:System.Drawing.dll -r:Renderer.dll -r:../../xunit.dll -out:RendererTest.dll -target:library *.cs"
+  sh "dmcs -r:OpenTK.dll -r:System.dll -r:System.Drawing.dll -r:../Renderer.dll -r:xunit.dll -out:RendererTest.dll -target:library *.cs"
 end
 
 desc 'Clean up the build'
