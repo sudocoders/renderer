@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="RendererTest.dll" total="8" failures="3" not-run="0" date="2013-02-27" time="10:54:04">
+  <environment nunit-version="2.4.8.0" clr-version="2.0.50727.1433" os-version="Microsoft Windows NT 6.1.7601.65536 Service Pack 1" platform="Win32NT" cwd="e:\Programming\future-animal-wars\Future Animal Wars\Renderer\TestRenderer" machine-name="ADALEIGH-PC" user="Adaleigh" user-domain="ADALEIGH-PC" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite name="RendererTest.dll" success="False" time="0.965" asserts="0">
+    <results>
+      <test-suite name="Renderer" success="False" time="0.960" asserts="0">
+        <results>
+          <test-suite name="TestRenderer" success="False" time="0.960" asserts="0">
+            <results>
+              <test-suite name="GL33TextureTest" success="True" time="0.000" asserts="0">
+                <results />
+              </test-suite>
+              <test-suite name="GL33WindowFactoryTest" success="False" time="0.809" asserts="0">
+                <results>
+                  <test-case name="Renderer.TestRenderer.GL33WindowFactoryTest.CreateInvalidWindowTest" executed="True" success="True" time="0.135" asserts="0" />
+                  <test-case name="Renderer.TestRenderer.GL33WindowFactoryTest.CreateValidWindowTest" executed="True" success="True" time="0.566" asserts="1" />
+                  <test-case name="Renderer.TestRenderer.GL33WindowFactoryTest.CreateWindowWithNoNameTest" executed="True" success="False" time="0.078" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                      <stack-trace><![CDATA[at OpenTK.Graphics.GraphicsContext.<.cctor>b__0 () [0x00000] in <filename unknown>:0
+at (wrapper delegate-invoke) <Module>:invoke_ContextHandle__this__ ()
+at OpenTK.Graphics.GraphicsContext.get_CurrentContext () [0x00000] in <filename unknown>:0
+at OpenTK.Graphics.GraphicsBindingsBase.GetAddress (System.String funcname) [0x00000] in <filename unknown>:0
+at OpenTK.BindingsBase.GetExtensionDelegate (System.String name, System.Type signature) [0x00000] in <filename unknown>:0
+at OpenTK.BindingsBase.LoadDelegate (System.String name, System.Type signature) [0x00000] in <filename unknown>:0
+at OpenTK.BindingsBase.LoadEntryPoints () [0x00000] in <filename unknown>:0
+at OpenTK.Platform.DesktopGraphicsContext.LoadAll () [0x00000] in <filename unknown>:0
+at OpenTK.Platform.Windows.WinGLContext.LoadAll () [0x00000] in <filename unknown>:0
+at OpenTK.Graphics.GraphicsContext.LoadAll () [0x00000] in <filename unknown>:0
+at OpenTK.GameWindow..ctor (Int32 width, Int32 height, OpenTK.Graphics.GraphicsMode mode, System.String title, GameWindowFlags options, OpenTK.DisplayDevice device, Int32 major, Int32 minor, GraphicsContextFlags flags, IGraphicsContext sharedContext) [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="Renderer.TestRenderer.GL33WindowFactoryTest.GetInstanceTest" executed="True" success="True" time="0.000" asserts="1" />
+                </results>
+              </test-suite>
+              <test-suite name="GL33WindowTest" success="False" time="0.109" asserts="0">
+                <results>
+                  <test-case name="Renderer.TestRenderer.GL33WindowTest.TestBlankNameConstructor" executed="True" success="False" time="0.051" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                      <stack-trace><![CDATA[at OpenTK.Graphics.GraphicsContext.<.cctor>b__0 () [0x00000] in <filename unknown>:0
+at (wrapper delegate-invoke) <Module>:invoke_ContextHandle__this__ ()
+at OpenTK.Graphics.GraphicsContext.get_CurrentContext () [0x00000] in <filename unknown>:0
+at OpenTK.Graphics.GraphicsContext.LoadAll () [0x00000] in <filename unknown>:0
+at OpenTK.GameWindow..ctor (Int32 width, Int32 height, OpenTK.Graphics.GraphicsMode mode, System.String title, GameWindowFlags options, OpenTK.DisplayDevice device, Int32 major, Int32 minor, GraphicsContextFlags flags, IGraphicsContext sharedContext) [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="Renderer.TestRenderer.GL33WindowTest.TestInvalidHeightConstructor" executed="True" success="True" time="0.000" asserts="0" />
+                  <test-case name="Renderer.TestRenderer.GL33WindowTest.TestInvalidWidthConstructor" executed="True" success="True" time="0.000" asserts="0" />
+                  <test-case name="Renderer.TestRenderer.GL33WindowTest.TestValidConstructor" executed="True" success="False" time="0.049" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                      <stack-trace><![CDATA[at OpenTK.Graphics.GraphicsContext.<.cctor>b__0 () [0x00000] in <filename unknown>:0
+at (wrapper delegate-invoke) <Module>:invoke_ContextHandle__this__ ()
+at OpenTK.Graphics.GraphicsContext.get_CurrentContext () [0x00000] in <filename unknown>:0
+at OpenTK.Graphics.GraphicsContext.LoadAll () [0x00000] in <filename unknown>:0
+at OpenTK.GameWindow..ctor (Int32 width, Int32 height, OpenTK.Graphics.GraphicsMode mode, System.String title, GameWindowFlags options, OpenTK.DisplayDevice device, Int32 major, Int32 minor, GraphicsContextFlags flags, IGraphicsContext sharedContext) [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
