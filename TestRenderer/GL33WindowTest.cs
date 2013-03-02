@@ -18,6 +18,7 @@ namespace Renderer
             {
                 GL33Window window = new GL33Window(800, 600, "blah", OpenTK.GameWindowFlags.Default);
                 Assert.NotNull(window);
+				window.Dispose();
             }
             [Fact]
             public void TestInvalidWidthConstructor()
@@ -35,6 +36,7 @@ namespace Renderer
             {
                 GL33Window window = new GL33Window(800, 600, "", OpenTK.GameWindowFlags.Default);
                 Assert.NotNull(window);
+				window.Dispose();
             }
         }
     }

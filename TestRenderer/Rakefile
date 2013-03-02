@@ -9,10 +9,10 @@ end
 
 desc 'Clean up the build'
 task :clean do
-  sh "rm RendererTest.dll"
+  sh "rm RendererTest.dll *.xml"
 end
 
 desc 'Run unit tests'
 task :test do
-  system "xunit.sh RendererTest.dll"
+  system "xunit.sh RendererTest.dll //nunit TestResults.xml"
 end

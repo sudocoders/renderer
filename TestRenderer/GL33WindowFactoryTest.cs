@@ -26,6 +26,7 @@ namespace Renderer
             {
                 IGLWindow window = GL33WindowFactory.GetInstance().CreateWindow(100, 100, "Blah", OpenTK.GameWindowFlags.Default);
                 Assert.NotNull(window);
+				((GL33Window)window).Dispose();
             }
             [Fact]
             public void CreateInvalidWindowTest()
@@ -40,6 +41,7 @@ namespace Renderer
             {
                 IGLWindow window = GL33WindowFactory.GetInstance().CreateWindow(100, 100, "", OpenTK.GameWindowFlags.Default);
                 Assert.NotNull(window);
+				((GL33Window)window).Dispose();
             }
         }
     }
