@@ -12,7 +12,12 @@ task :clean do
   sh "rm RendererTest.dll *.xml"
 end
 
-desc 'Run unit tests'
+desc 'Run unit tests locally'
 task :test do
   puts %x(sh xunit.sh RendererTest.dll //nunit TestResults.xml)
+end
+
+desc 'Run unit test on jenkins'
+task :testjenkins do
+  puts %x(sh /home/sudocoders/xunit/xunit.sh RendererTest.dll //nunit TestResults.xml)
 end
