@@ -14,5 +14,5 @@ end
 
 desc 'Run unit tests'
 task :test do
-  puts %x(sh ~/xunit/xunit.sh RendererTest.dll //nunit TestResults.xml)
+  puts %x(sh xunit.sh RendererTest.dll //nunit TestResults.xml)
 end
