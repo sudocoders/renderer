@@ -5,7 +5,7 @@ using System.Text;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
-
+using OpenTK.Input;
 namespace Future_Animal_Wars
 {
     namespace Renderer
@@ -13,7 +13,8 @@ namespace Future_Animal_Wars
         public class GL33Window : GameWindow, IGLWindow
         {
             private List<IRenderable> Renderables;
-            
+            private Dictionary<Key, Action> KeyEvents;
+			private Dictionary<MouseInformation, Action> MouseEvents;
             public Color4 ClearColor
             {
                 get;
@@ -22,7 +23,6 @@ namespace Future_Animal_Wars
 
             public LoadFunction OnLoadFunction;
             public UpdateFunction OnUpdateFunction;
-
             /// <summary>
             /// 
             /// </summary>
@@ -37,6 +37,8 @@ namespace Future_Animal_Wars
                 ClearColor = new Color4();
                 OnLoadFunction = null;
                 OnUpdateFunction = null;
+				KeyEvents = new Dictionary<Key, Action>();
+				MouseEvents = new Dictionary<MouseInformation, Action>();
             }
 
             public void AddRenderable(IRenderable renderable, Matrix4 projectionmatrix, Matrix4 modelviewmatrix)
@@ -45,6 +47,22 @@ namespace Future_Animal_Wars
                 renderable.SetProjectionMatrix(projectionmatrix);
                 Renderables.Add(renderable);
             }
+			
+			public void AddKeyAction(Key key, Action action)
+			{
+			    KeyEvents[key] = action;
+			}
+			
+		    public void AddMouseAction(MouseInformation info, Action action)
+			{
+			    MouseEvents[info] = action;
+			}
+			
+			public void GetMousePosition(out int x, out int y)
+			{
+			    x = Mouse.X;
+				y = Mouse.Y;
+			}
             /// <summary>
             /// 
             /// </summary>
@@ -90,6 +108,23 @@ namespace Future_Animal_Wars
             {
                 if(OnUpdateFunction != null)
                     OnUpdateFunction(ref Renderables);
+				foreach(KeyValuePair<Key, Action> kvp in KeyEvents)
+				{
+				   if(Keyboard[kvp.Key])
+				      kvp.Value();
+				}
+				foreach(KeyValuePair<MouseInformation, Action> kvp in MouseEvents)
+				{
+				    //No Position data needed to carry out action
+				    if(kvp.Key.X == -1 || kvp.Key.Y == -1)
+					   kvp.Value();
+					//Make sure mouse is within the threshold (like a button)
+					if(Mouse.X >= kvp.Key.X - kvp.Key.XThreshold &&
+					   Mouse.X <= kvp.Key.X + kvp.Key.XThreshold &&
+					   Mouse.Y >= kvp.Key.Y - kvp.Key.YThreshold &&
+					   Mouse.Y <= kvp.Key.Y + kvp.Key.YThreshold)
+					   kvp.Value();
+				}
             }
             /// <summary>
             /// 
