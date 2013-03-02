@@ -5,7 +5,7 @@ Dir.glob('**/*.rake').each { |r| import r}
 desc 'Use dmcs to compile'
 task :compile do
   sh "dmcs -r:OpenTK.dll -r:System.dll -r:System.Drawing.dll -out:Renderer.dll -target:library *.cs"
-  sh "cp Renderer.dll ./TestRenderer/
+  sh "cp Renderer.dll ./TestRenderer/"
 end
 
 desc 'Test Renderer Locally'
