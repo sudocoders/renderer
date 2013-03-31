@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenTK;
 using Xunit;
-using Future_Animal_Wars.Renderer;
+using Renderer;
 namespace Renderer
 {
     namespace TestRenderer

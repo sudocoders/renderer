@@ -2,7 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Future_Animal_Wars.Renderer;
+using Renderer;
 using Xunit;
 
 namespace Renderer
