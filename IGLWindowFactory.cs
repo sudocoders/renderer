@@ -1,13 +1,11 @@
 ﻿using System;
 using OpenTK;
 
-namespace Future_Animal_Wars
+
+namespace Renderer
 {
-    namespace Renderer
+    public interface IGLWindowFactory
     {
-        public interface IGLWindowFactory
-        {
-            IGLWindow CreateWindow(int width, int height, string name, GameWindowFlags fullscreen);
-        }
+        IGLWindow CreateWindow(int width, int height, string name, GameWindowFlags fullscreen);
     }
 }

@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Future_Animal_Wars
+
+namespace Renderer
 {
-    namespace Renderer
+    public interface IShader
     {
-        public interface IShader
-        {
-            bool LoadVertexShader(string file);
-            bool LoadFragmentShader(string file);
-            bool LoadGeometryShader(string file);
-            bool LinkProgram();
+        bool LoadVertexShader(string file);
+        bool LoadFragmentShader(string file);
+        bool LoadGeometryShader(string file);
+        bool LinkProgram();
 
-            void Activate();
+        void Activate();
 
-            int GetAttribLocation(string name);
-            int GetUniformLocation(string name);
-            int GetProgram();
-        }
+        int GetAttribLocation(string name);
+        int GetUniformLocation(string name);
+        int GetProgram();
     }
 }
