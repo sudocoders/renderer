@@ -1,10 +1,25 @@
 require 'rake'
 require 'date'
+require 'net/http'
 Dir.glob('**/*.rake').each { |r| import r}
+
+desc 'Grab dependencies'
+task :pillage do
+  Net::HTTP.start("repo.sudocoders.net") do |http|
+    resp = http.get("/objloader/ObjLoaderBleedingEdge.tar.gz")
+    open("ObjLoaderBleedingEdge.tar.gz", "wb") { |file| file.write(resp.body) }
+  end
+  puts "Untarring dependencies."
+  sh 'tar -xvf ObjLoaderBleedingEdge.tar.gz'
+  sh 'cp ./source/CjClutter.ObjLoader.Loader/bin/Debug/*.dll .'
+  sh 'rm -rf source'
+  puts "Removing those tars."
+  sh 'rm *.tar.gz'
+end
 
 desc 'Use dmcs to compile'
 task :compile do
-  sh "dmcs -r:OpenTK.dll -r:System.dll -r:System.Drawing.dll -out:Renderer.dll -target:library *.cs"
+  sh "dmcs -r:OpenTK.dll -r:System.dll -r:System.Drawing.dll -r:CjClutter.ObjLoader.Loader.dll -out:Renderer.dll -target:library *.cs"
   sh "cp Renderer.dll ./TestRenderer/"
 end
 

@@ -18,10 +18,6 @@ namespace Renderer
         private int[] VertexBufferObject;
         private int VertexArrayObject;
 
-        private List<Vector3> Vertices;
-        private List<Vector3> Normals;
-        private List<Vector2> TextureCoordinates;
-
         public Vector3 Position;
         public Quaternion Rotation;
         public Vector3 Scale;
@@ -30,7 +26,7 @@ namespace Renderer
         private Matrix4 ProjectionMatrix;
         private Matrix4 TransformationMatrix;
         /// <summary>
-        /// 
+        /// This can only be created after an opengl context has been created.
         /// </summary>
         public GL33Renderable()
         {
@@ -62,32 +58,8 @@ namespace Renderer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="vertices"></param>
-        public void AddVertices(List<Vector3> vertices)
-        {
-            this.Vertices = vertices;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="normals"></param>
-        public void AddNormals(List<Vector3> normals)
-        {
-            this.Normals = normals;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="texcoords"></param>
-        public void AddTextureCoordinates(List<Vector2> texcoords)
-        {
-            this.TextureCoordinates = texcoords;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="mat"></param>
-        public void SetModelViewMatrix(Matrix4 mat)
+        public override void SetModelViewMatrix(Matrix4 mat)
         {
             ModelViewMatrix = mat;
         }
@@ -95,14 +67,14 @@ namespace Renderer
         /// 
         /// </summary>
         /// <param name="mat"></param>
-        public void SetProjectionMatrix(Matrix4 mat)
+        public override void SetProjectionMatrix(Matrix4 mat)
         {
             ProjectionMatrix = mat;
         }
         /// <summary>
         /// ***This requires shaders to have uniforms called viewmatrix, projmatrix, and transformmatrix.***
         /// </summary>
-        public void Render()
+        public override void Render()
         {
             if (Shader == null)
                 throw new NullReferenceException("Cannot render without attached shader.");
@@ -145,7 +117,7 @@ namespace Renderer
         /// 
         /// </summary>
         /// <param name="tex"></param>
-        public void AddTexture(ITexture tex)
+        public override void AddTexture(ITexture tex)
         {
             Textures.Add(tex);
             Console.WriteLine("Adding Texture.");
@@ -154,7 +126,7 @@ namespace Renderer
         /// 
         /// </summary>
         /// <param name="shade"></param>
-        public void AddShader(IShader shade)
+        public override void AddShader(IShader shade)
         {
             Shader = shade;
         }
@@ -163,7 +135,7 @@ namespace Renderer
         /// 
         /// </summary>
         /// <param name="trans"></param>
-        public void SetTranslation(Vector3 trans)
+        public override void SetTranslation(Vector3 trans)
         {
             Position = trans;
         }
@@ -171,7 +143,7 @@ namespace Renderer
         /// 
         /// </summary>
         /// <param name="rot"></param>
-        public void SetRotation(Quaternion rot)
+        public override void SetRotation(Quaternion rot)
         {
             Rotation = rot;
         }
@@ -179,14 +151,14 @@ namespace Renderer
         /// 
         /// </summary>
         /// <param name="scale"></param>
-        public void SetScale(Vector3 scale)
+        public override void SetScale(Vector3 scale)
         {
             Scale = scale;
         }
         /// <summary>
         /// 
         /// </summary>
-        public void SetUpRenderable()
+        public override void SetUpRenderable()
         {
             if(Vertices.Count != Normals.Count || Vertices.Count != TextureCoordinates.Count || Normals.Count != TextureCoordinates.Count)
             {
