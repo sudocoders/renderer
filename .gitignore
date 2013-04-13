@@ -1,1 +1,5 @@
-Renderer.dll
+*.dll
+*.sln
+*.csproj
+*.xml
+*.userprefs

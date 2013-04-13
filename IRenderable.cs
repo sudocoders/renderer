@@ -7,32 +7,33 @@ using ObjLoader.Loader.Data.VertexData;
 
 namespace Renderer
 {
-    public abstract class IRenderable
-    {
+  public abstract class IRenderable
+  {
 
-        protected List<Vertex> Vertices;
-        protected List<Normal> Normals;
-        protected List<TextureCoordinate> TextureCoordinates;
-        public void AddVertices(List<Vertex> vertices)
-        {
-            this.Vertices = vertices;
-        }
-        public void AddNormals(List<Normal> normals)
-        {
-            this.Normals = normals;
-        }
-        public void AddTextureCoordinates(List<TextureCoordinate> texcoords)
-        {
-            this.TextureCoordinates = texcoords;
-        }
-        public abstract void SetUpRenderable();
-        public abstract void AddTexture(ITexture tex);
-        public abstract void AddShader(IShader shade);
-        public abstract void SetTranslation(Vector3 trans);
-        public abstract void SetRotation(Quaternion rot);
-        public abstract void SetScale(Vector3 scale);
-        public abstract void SetProjectionMatrix(Matrix4 projectionmatrix);
-        public abstract void SetModelViewMatrix(Matrix4 modelviewmatrix);
-        public abstract void Render();
+    protected List<Vertex> Vertices;
+    protected List<Normal> Normals;
+    protected List<TextureCoordinate> TextureCoordinates;
+    public string Name;
+    public void AddVertices(List<Vertex> vertices)
+    {
+        this.Vertices = vertices;
     }
+    public void AddNormals(List<Normal> normals)
+    {
+        this.Normals = normals;
+    }
+    public void AddTextureCoordinates(List<TextureCoordinate> texcoords)
+    {
+        this.TextureCoordinates = texcoords;
+    }
+    public abstract void SetUpRenderable();
+    public abstract void AddTexture(ITexture tex);
+    public abstract void SetShader(IShader shade);
+    public abstract void SetTranslation(Vector3 trans);
+    public abstract void SetRotation(Quaternion rot);
+    public abstract void SetScale(Vector3 scale);
+    public abstract void SetProjectionMatrix(Matrix4 projectionmatrix);
+    public abstract void SetModelViewMatrix(Matrix4 modelviewmatrix);
+    public abstract void Render();
+  }
 }
