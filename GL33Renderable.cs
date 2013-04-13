@@ -120,13 +120,12 @@ namespace Renderer
         public override void AddTexture(ITexture tex)
         {
             Textures.Add(tex);
-            Console.WriteLine("Adding Texture.");
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="shade"></param>
-        public override void AddShader(IShader shade)
+        public override void SetShader(IShader shade)
         {
             Shader = shade;
         }
