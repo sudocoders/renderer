@@ -10,9 +10,9 @@ namespace Renderer
     {
         static private GL33WindowFactory instance;
         /// <summary>
-        /// 
+        /// Gets the singleton instance of GL33WindowFactory
         /// </summary>
-        /// <returns></returns>
+        /// <returns>GL33WindowFactory Instance</returns>
         static public GL33WindowFactory GetInstance()
         {
             if (instance == null)
@@ -20,13 +20,13 @@ namespace Renderer
             return instance;
         }
         /// <summary>
-        /// 
+        /// Creates a window of specified width, heigh, name, and whether or not it is fullscreen
         /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="name"></param>
-        /// <param name="fullscreen"></param>
-        /// <returns></returns>
+        /// <param name="width">The width of the screen</param>
+        /// <param name="height">The height of the screen</param>
+        /// <param name="name">The name of the screen</param>
+        /// <param name="fullscreen">Whether or not the screen is full screen.</param>
+        /// <returns>A new GL33Window</returns>
         public IGLWindow CreateWindow(int width, int height, string name, GameWindowFlags fullscreen)
         {
             return new GL33Window(width, height, name, fullscreen);
