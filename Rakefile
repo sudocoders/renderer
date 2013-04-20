@@ -24,6 +24,7 @@ end
 
 desc 'Use dmcs to compile'
 task :compile do
+  sh 'rake pillage'
   sh "dmcs -r:OpenTK.dll -r:System.dll -r:System.Drawing.dll -r:CjClutter.ObjLoader.Loader.dll -out:Renderer.dll -target:library *.cs"
   sh "cp Renderer.dll ./TestRenderer/"
 end
