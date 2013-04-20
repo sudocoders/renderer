@@ -9,8 +9,13 @@ task :pillage do
     resp = http.get("/objloader/ObjLoaderBleedingEdge.tar.gz")
     open("ObjLoaderBleedingEdge.tar.gz", "wb") { |file| file.write(resp.body) }
   end
+  Net::HTTP.start('repo.sudocoders.net') do |http|
+    resp = http.get('/opentk/OpenTK.tar.gz')
+    open('OpenTK.tar.gz', 'wb') { |file| file.write(resp.body) }
+  end
   puts "Untarring dependencies."
   sh 'tar -xvf ObjLoaderBleedingEdge.tar.gz'
+  sh 'tar xvf OpenTK.tar.gz'
   sh 'cp ./source/CjClutter.ObjLoader.Loader/bin/Debug/*.dll .'
   sh 'rm -rf source'
   puts "Removing those tars."
