@@ -40,12 +40,21 @@ namespace Renderer
         foreach(Face f in g.Faces)
         {
           //Grabs vertices, normals, and texcoords based on the indices given from the face
-          for(int i = 0; i < 3; i++)
-            vertices.Add (result.Vertices[f[i].VertexIndex]);
-          for(int i = 0; i < 3; i++)
-            normals.Add (result.Normals[f[i].NormalIndex]);
-          for(int i = 0; i < 3; i++)
-            texcoords.Add (result.Textures[f[i].TextureIndex]);
+          if(result.Vertices.Count > 0)
+          {
+            for(int i = 0; i < 3; i++)
+              vertices.Add (result.Vertices[f[i].VertexIndex]);
+          }
+          if(result.Normals.Count > 0)
+          {
+            for(int i = 0; i < 3; i++)
+              normals.Add (result.Normals[f[i].NormalIndex]);
+          }
+          if(result.Textures.Count > 0)
+          {
+            for(int i = 0; i < 3; i++)
+              texcoords.Add (result.Textures[f[i].TextureIndex]);
+          }
         }
         newrenderable.AddVertices (vertices);
         newrenderable.AddNormals (normals);
