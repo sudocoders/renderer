@@ -26,6 +26,18 @@ namespace Renderer
     {
         this.TextureCoordinates = texcoords;
     }
+    public List<Vertex> GetVertices()
+    {
+        return this.Vertices;
+    }
+    public List<Normal> GetNormals()
+    {
+        return this.Normals;
+    }
+    public List<TextureCoordinate> GetTextureCoordinates()
+    {
+        return this.TextureCoordinates;
+    }
     public abstract void SetUpRenderable();
     public abstract void AddTexture(ITexture tex);
     public abstract void SetShader(IShader shade);
