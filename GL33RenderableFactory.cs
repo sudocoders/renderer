@@ -6,7 +6,7 @@ using ObjLoader.Loader.Data.VertexData;
 
 namespace Renderer
 {
-  public class GL33RenderableFactory : IRenderableFactory
+  public class GL33RenderableFactory
   {
     static private GL33RenderableFactory instance;
     private GL33RenderableFactory ()
