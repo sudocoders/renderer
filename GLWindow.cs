@@ -14,8 +14,8 @@ namespace Renderer
         private List<IRenderable> Renderables;
         private Dictionary<Key, Action> KeyEvents;
 		private Dictionary<MouseInformation, Action> MouseEvents;
-        LoadFunction OnLoadFunction;
-        UpdateFunction OnUpdateFunction;
+        public LoadFunction OnLoadFunction;
+        public UpdateFunction OnUpdateFunction;
         public Color4 ClearColor
         {
             get;
