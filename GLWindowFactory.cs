@@ -6,17 +6,17 @@ using OpenTK;
 
 namespace Renderer
 {
-    public class GL33WindowFactory : IGLWindowFactory
+    public class GLWindowFactory : IGLWindowFactory
     {
-        static private GL33WindowFactory instance;
+        static private GLWindowFactory instance;
         /// <summary>
         /// Gets the singleton instance of GL33WindowFactory
         /// </summary>
         /// <returns>GL33WindowFactory Instance</returns>
-        static public GL33WindowFactory GetInstance()
+        static public GLWindowFactory GetInstance()
         {
             if (instance == null)
-                instance = new GL33WindowFactory();
+                instance = new GLWindowFactory();
             return instance;
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Renderer
         /// <returns>A new GL33Window</returns>
         public IGLWindow CreateWindow(int width, int height, string name, GameWindowFlags fullscreen)
         {
-            return new GL33Window(width, height, name, fullscreen);
+            return new GLWindow(width, height, name, fullscreen);
         }
     }
 }

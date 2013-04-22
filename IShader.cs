@@ -10,7 +10,6 @@ namespace Renderer
     {
         bool LoadVertexShader(string file);
         bool LoadFragmentShader(string file);
-        bool LoadGeometryShader(string file);
         bool LinkProgram();
 
         void Activate();

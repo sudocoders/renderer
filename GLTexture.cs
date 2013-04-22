@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Renderer
 {
-    public class GL33Texture : ITexture
+    public class GLTexture : ITexture
     {
         private int TextureId;
         /// <summary>

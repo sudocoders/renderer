@@ -6,18 +6,18 @@ using ObjLoader.Loader.Data.VertexData;
 
 namespace Renderer
 {
-  public class GL33RenderableFactory
+  public class GLRenderableFactory
   {
-    static private GL33RenderableFactory instance;
-    private GL33RenderableFactory ()
+    static private GLRenderableFactory instance;
+    private GLRenderableFactory ()
     {
     }
 
-    static public GL33RenderableFactory GetInstance()
+    static public GLRenderableFactory GetInstance()
     {
       if(instance == null)
       {
-        instance = new GL33RenderableFactory();
+        instance = new GLRenderableFactory();
       }
       return instance;
     }
@@ -26,12 +26,12 @@ namespace Renderer
     /// </summary>
     /// <returns>A list of renderables with 1:1 correspondance to obj groups.</returns>
     /// <param name="result">The load result from objLoader.</param>
-    public List<GL33Renderable> CreateRenderableFromObj(LoadResult result)
+    public List<T> CreateRenderableFromObj<T>(LoadResult result) where T: IRenderable, new()
     {
-      List<GL33Renderable> listofrenderables = new List<GL33Renderable> ();
+      List<T> listofrenderables = new List<T> ();
       foreach(Group g in result.Groups)
       {
-        GL33Renderable newrenderable = new GL33Renderable();
+        T newrenderable = new T();
         newrenderable.Name = g.Name;
         List<Vertex> vertices = new List<Vertex>();
         List<Normal> normals = new List<Normal>();
@@ -64,9 +64,9 @@ namespace Renderer
       return listofrenderables;
     }
 
-    public GL33Renderable CreateRenderableFromVertexData(List<Vertex> vertices, List<Normal> normals, List<TextureCoordinate> texcoords)
+    public T CreateRenderableFromVertexData<T>(List<Vertex> vertices, List<Normal> normals, List<TextureCoordinate> texcoords) where T: IRenderable, new()
     {
-      GL33Renderable renderable = new GL33Renderable ();
+      T renderable = new T ();
       renderable.AddVertices (vertices);
       renderable.AddNormals (normals);
       renderable.AddTextureCoordinates (texcoords);

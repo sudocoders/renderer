@@ -9,7 +9,7 @@ using OpenTK.Input;
 
 namespace Renderer
 {
-    public class GL33Window : GameWindow, IGLWindow
+    public class GLWindow : GameWindow, IGLWindow
     {
         private List<IRenderable> Renderables;
         private Dictionary<Key, Action> KeyEvents;
@@ -29,7 +29,7 @@ namespace Renderer
         /// <param name="height"></param>
         /// <param name="name"></param>
         /// <param name="fullscreen"></param>
-        public GL33Window(int width, int height, string name, GameWindowFlags fullscreen)
+        public GLWindow(int width, int height, string name, GameWindowFlags fullscreen)
             : base(width, height, GraphicsMode.Default, name, fullscreen, DisplayDevice.Default, 3, 3, GraphicsContextFlags.ForwardCompatible)
         {
             Renderables = new List<IRenderable>();
