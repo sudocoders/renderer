@@ -43,17 +43,17 @@ namespace Renderer
           if(result.Vertices.Count > 0)
           {
             for(int i = 0; i < 3; i++)
-              vertices.Add (result.Vertices[f[i].VertexIndex]);
+              vertices.Add (result.Vertices[f[i].VertexIndex - 1]);
           }
           if(result.Normals.Count > 0)
           {
             for(int i = 0; i < 3; i++)
-              normals.Add (result.Normals[f[i].NormalIndex]);
+              normals.Add (result.Normals[f[i].NormalIndex - 1]);
           }
           if(result.Textures.Count > 0)
           {
             for(int i = 0; i < 3; i++)
-              texcoords.Add (result.Textures[f[i].TextureIndex]);
+              texcoords.Add (result.Textures[f[i].TextureIndex - 1]);
           }
         }
         newrenderable.AddVertices (vertices);
