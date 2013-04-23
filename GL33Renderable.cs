@@ -18,10 +18,6 @@ namespace Renderer
         private int[] VertexBufferObject;
         private int VertexArrayObject;
 
-        public Vector3 Position;
-        public Quaternion Rotation;
-        public Vector3 Scale;
-
         private Matrix4 ModelViewMatrix;
         private Matrix4 ProjectionMatrix;
         private Matrix4 TransformationMatrix;
@@ -128,31 +124,6 @@ namespace Renderer
         public override void SetShader(IShader shade)
         {
             Shader = shade;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="trans"></param>
-        public override void SetTranslation(Vector3 trans)
-        {
-            Position = trans;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rot"></param>
-        public override void SetRotation(Quaternion rot)
-        {
-            Rotation = rot;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scale"></param>
-        public override void SetScale(Vector3 scale)
-        {
-            Scale = scale;
         }
         /// <summary>
         /// 
