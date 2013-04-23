@@ -11,7 +11,7 @@ namespace Renderer
 {
     public class GLWindow : GameWindow, IGLWindow
     {
-        private List<GL33Renderable> Renderables;
+        private List<IRenderable> Renderables;
         private Dictionary<Key, Action> KeyEvents;
 		private Dictionary<MouseInformation, Action> MouseEvents;
         public LoadFunction OnLoadFunction;
@@ -32,7 +32,7 @@ namespace Renderer
         public GLWindow(int width, int height, string name, GameWindowFlags fullscreen)
             : base(width, height, GraphicsMode.Default, name, fullscreen, DisplayDevice.Default, 3, 3, GraphicsContextFlags.ForwardCompatible)
         {
-            Renderables = new List<GL33Renderable>();
+            Renderables = new List<IRenderable>();
             ClearColor = new Color4();
             OnLoadFunction = null;
             OnUpdateFunction = null;
@@ -40,7 +40,7 @@ namespace Renderer
 			MouseEvents = new Dictionary<MouseInformation, Action>();
         }
 
-        public void AddRenderable(GL33Renderable renderable, Matrix4 projectionmatrix, Matrix4 modelviewmatrix)
+        public void AddRenderable(IRenderable renderable, Matrix4 projectionmatrix, Matrix4 modelviewmatrix)
         {
             renderable.SetModelViewMatrix(modelviewmatrix);
             renderable.SetProjectionMatrix(projectionmatrix);
