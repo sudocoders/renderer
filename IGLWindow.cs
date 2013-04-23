@@ -14,8 +14,8 @@ namespace Renderer
 			  public int XThreshold;
 			  public int YThreshold;
 		}
-    public delegate void LoadFunction(ref List<GL33Renderable> renderables);
-    public delegate void UpdateFunction(ref List<GL33Renderable> renderables);
+    public delegate void LoadFunction(ref List<IRenderable> renderables);
+    public delegate void UpdateFunction(ref List<IRenderable> renderables);
 		public delegate void KeyEvent(ref IRenderable renderable);
     public interface IGLWindow
     {
