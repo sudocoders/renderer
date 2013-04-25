@@ -126,56 +126,79 @@ namespace Renderer
             Shader = shade;
         }
         /// <summary>
-        /// 
+        ///  Requires shader to have attribs called position, normal, and texcoord
         /// </summary>
         public override void SetUpRenderable()
         {
-            if(Vertices.Count != Normals.Count || Vertices.Count != TextureCoordinates.Count || Normals.Count != TextureCoordinates.Count)
-            {
-                throw new MalformedVertexDataException("The count of the vertices, normals, and texture coordinates are not the same. Can not set up VBO.");
-            }
-            List<float> vertex_information = new List<float>();
-            List<float> normal_information = new List<float>();
-            List<float> texcoord_information = new List<float>();
-            var vertexLoc = Shader.GetAttribLocation("position");
-            var normalLoc = Shader.GetAttribLocation("normal");
-            var texLoc = Shader.GetAttribLocation("texcoord");
-
-            for(int i = 0; i < Vertices.Count; i++)
-            {
-                vertex_information.Add(Vertices[i].X);
-                vertex_information.Add(Vertices[i].Y);
-                vertex_information.Add(Vertices[i].Z);
-            }
-            for(int i = 0; i < Normals.Count; i++)
-            {
-                normal_information.Add(Normals[i].X);
-                normal_information.Add(Normals[i].Y);
-                normal_information.Add(Normals[i].Z);
-            }
-            for(int i = 0; i < TextureCoordinates.Count; i++)
-            {
-                texcoord_information.Add(TextureCoordinates[i].X);
-                texcoord_information.Add(TextureCoordinates[i].Y);
-            }
-            if (!GL.IsBuffer(VertexBufferObject[0]) || !GL.IsBuffer(VertexBufferObject[1]) || !GL.IsBuffer(VertexBufferObject[2]))
-                throw new OpenGLException("Vertex Buffer Object is not valid! Cannot set up renderable!");
-
             GL.BindVertexArray(VertexArrayObject);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject[0]);
-            GL.BufferData<float>(BufferTarget.ArrayBuffer, (IntPtr)(sizeof(float) * vertex_information.Count), vertex_information.ToArray(), BufferUsageHint.StaticDraw);
-            GL.EnableVertexAttribArray(vertexLoc);
-            GL.VertexAttribPointer(vertexLoc, 3, VertexAttribPointerType.Float, false, 0, 0);
+            if(Vertices.Count == 0)
+            {
+                throw new MalformedVertexDataException("There are no vertices!");
+            }
+            if(Vertices.Count > 0)
+            {
+                List<float> vertex_information = new List<float>();
+                var vertexLoc = Shader.GetAttribLocation("position");
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject[1]);
-            GL.BufferData<float>(BufferTarget.ArrayBuffer, (IntPtr)(sizeof(float) * normal_information.Count), normal_information.ToArray(), BufferUsageHint.StaticDraw);
-            GL.EnableVertexAttribArray(normalLoc);
-            GL.VertexAttribPointer(normalLoc, 3, VertexAttribPointerType.Float, false, 0, 0);
+                for(int i = 0; i < Vertices.Count; i++)
+                {
+                    vertex_information.Add(Vertices[i].X);
+                    vertex_information.Add(Vertices[i].Y);
+                    vertex_information.Add(Vertices[i].Z);
+                }
+                if (!GL.IsBuffer(VertexBufferObject[0]))
+                    throw new OpenGLException("Vertex Buffer Object is not valid! Cannot set up renderable!");
+                GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject[0]);
+                GL.BufferData<float>(BufferTarget.ArrayBuffer, (IntPtr)(sizeof(float) * vertex_information.Count), vertex_information.ToArray(), BufferUsageHint.StaticDraw);
+                GL.EnableVertexAttribArray(vertexLoc);
+                GL.VertexAttribPointer(vertexLoc, 3, VertexAttribPointerType.Float, false, 0, 0);
+            }
+            if(Normals.Count > 0)
+            {
+                List<float> normal_information = new List<float>();
+                var normalLoc = Shader.GetAttribLocation("normal");
+                for(int i = 0; i < Normals.Count; i++)
+                {
+                    normal_information.Add(Normals[i].X);
+                    normal_information.Add(Normals[i].Y);
+                    normal_information.Add(Normals[i].Z);
+                }
+                if(!!GL.IsBuffer(VertexBufferObject[1]))
+                    throw new OpenGLException("Vertex Buffer Object is not valid! Cannot set up renderable!");
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject[2]);
-            GL.BufferData<float>(BufferTarget.ArrayBuffer, (IntPtr)(sizeof(float) * texcoord_information.Count), texcoord_information.ToArray(), BufferUsageHint.StaticDraw);
-            GL.EnableVertexAttribArray(texLoc);
-            GL.VertexAttribPointer(texLoc, 2, VertexAttribPointerType.Float, false, 0, 0);
+
+                GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject[1]);
+                GL.BufferData<float>(BufferTarget.ArrayBuffer, (IntPtr)(sizeof(float) * normal_information.Count), normal_information.ToArray(), BufferUsageHint.StaticDraw);
+                GL.EnableVertexAttribArray(normalLoc);
+                GL.VertexAttribPointer(normalLoc, 3, VertexAttribPointerType.Float, false, 0, 0);
+            }
+            else
+            {
+                VertexBufferObject[1] = -1;
+            }
+            if(TextureCoordinates.Count > 0)
+            {
+                List<float> texcoord_information = new List<float>();
+                var texLoc = Shader.GetAttribLocation("texcoord");
+                for(int i = 0; i < TextureCoordinates.Count; i++)
+                {
+                    texcoord_information.Add(TextureCoordinates[i].X);
+                    texcoord_information.Add(TextureCoordinates[i].Y);
+                }
+                if(!GL.IsBuffer(VertexBufferObject[2]))
+                    throw new OpenGLException("Vertex Buffer Object is not valid! Cannot set up renderable!");
+
+
+                GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject[2]);
+                GL.BufferData<float>(BufferTarget.ArrayBuffer, (IntPtr)(sizeof(float) * texcoord_information.Count), texcoord_information.ToArray(), BufferUsageHint.StaticDraw);
+                GL.EnableVertexAttribArray(texLoc);
+                GL.VertexAttribPointer(texLoc, 2, VertexAttribPointerType.Float, false, 0, 0);
+ 
+            }
+            else
+            {
+                VertexBufferObject[2] = -1;
+            }
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             for(int i = 0; i < Textures.Count; i++)
